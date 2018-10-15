@@ -24,7 +24,7 @@ export default class InfoWindow extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         const {google, map} = this.props;
-console.log("In InfoWinfow CDU", prevProps, this.props)
+// console.log("In InfoWinfow CDU", prevProps, this.props)
         if (!google || !map) {
           return;
         }
@@ -49,7 +49,7 @@ console.log("In InfoWinfow CDU", prevProps, this.props)
 
       updateContent() {
         let content = this.renderChildren();
-        console.log("Update Content", content)
+        // console.log("Update Content", content)
 
         // content = `<div id="info_content">${content}<button onclick="handleClick()">Save</button></div>`;
 
@@ -74,7 +74,7 @@ console.log("In InfoWinfow CDU", prevProps, this.props)
           content: 'Hiii'
         });
 
-        console.log(" iw ", iw)
+        // console.log(" iw ", iw)
 
         // google.maps.event.addListener(iw, 'click', this.handleClick.bind(this))
         google.maps.event.addListener(iw, 'closeclick', this.onClose.bind(this))
@@ -85,16 +85,16 @@ console.log("In InfoWinfow CDU", prevProps, this.props)
       // }
        onOpen() {
          
-        console.log("on open", this.props.children.props.children.props.children.props.text)
+        // console.log("on open", this.props.children.props.children.props.children.props.text)
         // if (this.props.onOpen) {
         //     this.props.onOpen();
         // }
         const first_text= document.getElementById("text").value
-        console.log("First text", first_text)
+        // console.log("First text", first_text)
 
         document.getElementById("text").addEventListener('input', function(e){
           document.getElementById('submit').disabled=false;
-          console.log("Changedddddd ", document.getElementById("text").value)
+          // console.log("Changedddddd ", document.getElementById("text").value)
           
         })
 
@@ -103,7 +103,7 @@ console.log("In InfoWinfow CDU", prevProps, this.props)
           e.preventDefault();
           let _id= document.getElementById("_id").innerHTML
           let text=document.getElementById("text").value
-          console.log(" butttttttttttttttttoon clicked", _id,text,document.getElementById('submit').disabled )
+          // console.log(" butttttttttttttttttoon clicked", _id,text,document.getElementById('submit').disabled )
           // let landmark = {
           //  _id : document.getElementById("_id").innerHTML,
           // owner :document.getElementById("owner").innerHTML.replace('@',''),
@@ -123,7 +123,7 @@ console.log("In InfoWinfow CDU", prevProps, this.props)
             if(response.ok) {
                 response.json().then(updatedLandmark => {
                         updatedLandmark.date = new Date();
-                        console.log("Updated Landmark", updatedLandmark)
+                        // console.log("Updated Landmark", updatedLandmark)
                         // alert('Updated issue successfully');
                         // this.props.history.push(`/landmarks`);
                         status='success'
@@ -157,7 +157,7 @@ console.log("In InfoWinfow CDU", prevProps, this.props)
     }
     
       onClose() {
-        console.log("In onClose", this.props)
+        // console.log("In onClose", this.props)
         if (this.props.onClose) {
             this.props.onClose();
         }
@@ -167,7 +167,7 @@ console.log("In InfoWinfow CDU", prevProps, this.props)
         this.infowindow.open(this.props.map, this.props.marker);
       }
       closeWindow() {
-        console.log("In close Window", this.infowindow)
+        // console.log("In close Window", this.infowindow)
         this.infowindow.close();
       }
     render() {

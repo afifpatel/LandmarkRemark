@@ -39,42 +39,6 @@ const app = (0, _express2.default)();
 app.use(_express2.default.static('static'));
 app.use(_bodyParser2.default.json());
 
-// const issues = [
-//     {
-//         id: 1, status: 'open', owner: 'Ravan',
-//         created: new Date('2016-08-15'), effort: 5, completionDate: undefined,
-//         title: 'Error in console when clicking Add',
-//     },
-//     {
-//         id: 2, status: 'Assigned', owner: 'Eddie',
-//         created: new Date('2016-08-16'), effort: 14,
-//         completionDate: new Date('2016-08-30'),
-//         title: 'Missing bottom border on panel',
-//     },
-//     ];
-
-// const validIssueStatus = {
-//     New: true,
-//     Open: true,
-//     Assigned: true,
-//     Fixed: true,
-//     Verified: true,
-//     Closed: true,
-//     };
-
-// const issueFieldType = {
-//     status: 'required',
-//     owner: 'required',
-//     effort: 'optional',
-//     created: 'required',
-//     completionDate: 'optional',
-//     title: 'required',
-//     };
-
-// app.get('/hello', (req,res) => {
-//     res.send('Hello World');
-// });
-
 let db;
 _mongodb.MongoClient.connect('mongodb://localhost').then(client => {
     db = client.db('lmr');
@@ -87,15 +51,6 @@ _mongodb.MongoClient.connect('mongodb://localhost').then(client => {
 
 app.get('/api/landmarks', (req, res) => {
     const filter = {};
-    // console.log(req);
-    // if (req.query.status) filter.status = req.query.status;
-    // if(req.query.effort_lte || req.query.effort_gte) filter.effort = {};
-    // if(req.query.effort_lte)
-    //     filter.effort.$lte = parseInt(req.query.effort_lte, 10);
-    // if(req.query.effort_gte)
-    //     filter.effort.$gte = parseInt(req.query.effort_gte, 10)
-    // if(req.query.owner)
-    //     filter.owner = req.query.owner;
 
     db.collection('lmr').find(filter).toArray().then(landmarks => {
         const metadata = { total_count: landmarks.length };
@@ -206,24 +161,4 @@ app.delete('/api/landmark/:id', (req, res) => {
 app.get('*', (req, res) => {
     res.sendFile(path.resolve('static/index.html'));
 });
-// app.listen(3000, function(){
-//     console.log('App started on port 3000');
-// });
-
-// function validateIssue(issue) {
-//     for(const field in issue ){
-//         const type = issueFieldType[field];
-//     if(!type) {
-//         delete issue[field];
-//     } else if ( type == 'required' && !issue[field]){
-//         return `${field} is required.`;
-//     }
-// }
-
-// if(!validIssueStatus[issue.status])
-//     return `${issue.status} is not a valid status.`;
-
-// return null;
-
-// }
 //# sourceMappingURL=server.js.map

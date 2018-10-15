@@ -18,7 +18,7 @@ export default class Marker extends React.Component {
   // }
 
   componentDidMount(){
-        console.log("IM in MARKER CDM")
+        // console.log("IM in MARKER CDM")
         this.renderMarker()
   }
 
@@ -50,7 +50,7 @@ export default class Marker extends React.Component {
 }
 
 handleEvent(evt) {
-  console.log("handle event of Marker")
+  // console.log("handle event of Marker")
   return (e) => {
     const evtName = `on${camelize(evt)}`
     if (this.props[evtName]) {
@@ -61,7 +61,7 @@ handleEvent(evt) {
   
   
   render() {
-    console.log("IM in MARKER RENDERRRRRRRRRRRRRRR")
+    // console.log("IM in MARKER RENDERRRRRRRRRRRRRRR")
     return null;
   }
 }

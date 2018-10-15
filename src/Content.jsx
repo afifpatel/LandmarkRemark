@@ -36,7 +36,7 @@ onChange(event){
 // }
     render(){
         const { username, landmark} = this.state;
-        console.log("In Content ", username, landmark)
+        // console.log("In Content ", username, landmark)
         return(
             <form id="note" onSubmit={this.onSubmit}>
                 <h5 id="_id" style={{display : 'none'}}>{landmark._id}</h5>

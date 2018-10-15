@@ -50,7 +50,7 @@ export default function App(props){
             {props.children}
             <hr />
             <h5><small>
-            Full source code available at this <a href = "https://github.com/afifpatel/Landmark-Remark">
+            Full source code available at this <a href = "https://github.com/afifpatel/LandmarkRemark">
             GitHub repistory</a>
             </small></h5>
         </div>

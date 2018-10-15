@@ -15,7 +15,7 @@ export default class Map extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("IN Constructor props", this.props)
+    // console.log("IN Constructor props", this.props)
 
     const {lat, lng} = this.props.initialCenter;
     this.state = {
@@ -78,10 +78,10 @@ recenterMap() {
 }
   
 loadMap() {
-      console.log("in maps")
+      // console.log("in maps")
         if (this.props && this.props.google) {
             // google is available
-            console.log("Google Api available", this.props)
+            // console.log("Google Api available", this.props)
 
             const {google} = this.props;
             const maps = google.maps;
@@ -104,7 +104,7 @@ loadMap() {
         this.map = new maps.Map(node, mapConfig);
 
         evtNames.forEach(e => {
-          console.log("Event",e)
+          // console.log("Event",e)
           this.map.addListener(e, this.handleEvent(e));
         });
 

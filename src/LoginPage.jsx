@@ -46,15 +46,15 @@ class LoginPage extends React.Component {
     // 
     onChange(e){
         this.setState({[e.target.name] : e.target.value })
-        console.log("CHANGINGGGGGGGGG")
-        console.log("TARGETTTTTTTT",e.target.value)
+        // console.log("CHANGINGGGGGGGGG")
+        // console.log("TARGETTTTTTTT",e.target.value)
 
         if(e.target.value !== '' && e.target.name === "username"){
-            console.log("TARGETTTTTTTT",[e.target.name])
+            // console.log("TARGETTTTTTTT",[e.target.name])
             this.props.dispatch(clearUsernameError())
         }
         if(e.target.value !== '' && e.target.name === "password"){
-            console.log("TARGETTTTTTTT",[e.target.name])
+            // console.log("TARGETTTTTTTT",[e.target.name])
             this.props.dispatch(clearPasswordError())
         }
         // console.log(this.state)
@@ -66,7 +66,7 @@ class LoginPage extends React.Component {
         let isValid = null;
         // this.props.dispatch(validateInput(this.state.username,this.state.password))
         const { username,password } = this.state
-        console.log("ERRORDSSSSSSSSSS: ", username, password)
+        // console.log("ERRORDSSSSSSSSSS: ", username, password)
         if(username !== '' && password !== '' )
             isValid = true;
         else
@@ -77,13 +77,13 @@ class LoginPage extends React.Component {
     onSubmit(e){       
         e.preventDefault();
         var form = document.forms.loginValidate;
-        console.log("username and password", form.username.value,form.password.value);
+        // console.log("username and password", form.username.value,form.password.value);
         let valid = false;
         valid = this.isValid();
         console.log("valid status", valid)
 
         if(valid && form.password.value === 'pass' && (form.username.value === 'userA' || form.username.value === 'userB' || form.username.value ==='userC')){
-            console.log("before dispatch ", this.state.username)
+            // console.log("before dispatch ", this.state.username)
             this.props.dispatch(loggedIn(this.state.username))
             this.setState({ username: form.username.value, isLoading: true})
         } else {
@@ -116,7 +116,7 @@ class LoginPage extends React.Component {
                     // </div>
                 );
         }
-        console.log("STATE BEFORE  RETURN ", this.props)
+        // console.log("STATE BEFORE  RETURN ", this.props)
 
         let emptyUsername = null
         if(username === null || username === undefined)

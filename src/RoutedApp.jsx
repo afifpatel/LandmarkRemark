@@ -75,7 +75,7 @@ class RoutedApp extends React.Component {
 render(){
 
     const { isLoggedIn , username} = this.props;
-    console.log("App render() isLoggedIn value : ", isLoggedIn, username);
+    // console.log("App render() isLoggedIn value : ", isLoggedIn, username);
      
     return(
         <Router history={browserHistory}>

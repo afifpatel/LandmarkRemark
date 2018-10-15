@@ -114,7 +114,7 @@ export class ViewMap extends React.Component{
         });
 
       const landmarks = this.state.landmarks_state
-      console.log("Landmark state before render in ViewMap ", landmarks)
+    //   console.log("Landmark state before render in ViewMap ", landmarks)
 
         return (
           <div style={style}>

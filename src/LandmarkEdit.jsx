@@ -198,7 +198,7 @@ console.log("Updated Landmark", updatedLandmark)
                             <Button bsStyle="link"><i className="fas fa-window-close fa-lg"></i></Button>
                         </Link>
                     </span>
-                    <span className="heading_title">Edit Landmark</span>
+                    <span className="heading_title">Landmark Details</span>
                 </div>
             </Panel.Heading>
             <Panel.Body>

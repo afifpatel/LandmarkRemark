@@ -128,7 +128,7 @@ dismissToast() {
 
     render(){
         // const query = parse(this.props.location.search);
-        console.log("Landmark list state",this.state.landmarks_state)
+        // console.log("Landmark list state",this.state.landmarks_state)
 
         return(
             <div>
