@@ -40,6 +40,7 @@ MongoDB instance on local machine. Please find instructions to configure MongoDB
 
    - This displays a table with notes from all users with their respective note id, name, location, date last updated and note text.
    - Again logged in user can click on his note to `edit/delete` but can only `read` other users notes.
+   - Search notes by `Text` or `User`,by entering search content and clicking respective search `buttons`.
   
 4. Logout - `<-- Logout`
    
