@@ -6,9 +6,7 @@ import  qs from 'query-string';
 import { parse } from 'query-string';
 import { Button, Glyphicon, Table, Panel} from 'react-bootstrap';
 
-// import IssueAdd from './IssueAdd.jsx';
-// import IssueFilter from './IssueFilter';
-// import Toast from './Toast';
+import LandmarkSearch from './LandmarkSearch.jsx';
 
 
 function IssueTable(props){
@@ -62,7 +60,7 @@ export default class LandmarkList extends React.Component{
         };
 
         // this.createIssue=this.createIssue.bind(this);
-        this.setFilter = this.setFilter.bind(this);
+        this.setURL = this.setURL.bind(this);
         this.deleteIssue=this.deleteLandmark.bind(this);
         this.showError = this.showError.bind(this);
         this.dismissToast = this.dismissToast.bind(this);
@@ -96,6 +94,19 @@ dismissToast() {
         this.loadData();
     }
 
+    componentDidUpdate(prevProps){
+         const oldQuery = parse(prevProps.location.search);
+         const newQuery = parse(this.props.location.search);
+        //  console.log('In CDU old new',oldQuery, newQuery);
+
+         if (oldQuery.owner === newQuery.owner && oldQuery.text === newQuery.text) {
+             return;
+         }
+
+
+         this.loadData();
+     }
+
     // // loadData(){
     //     setTimeout( () => {
     //     this.setState( { issues_state : issues} )
@@ -103,7 +114,8 @@ dismissToast() {
     // }
 
     loadData(){
-        fetch(`/api/landmarks`).then(response =>{
+        console.log("well in load Data")
+        fetch(`/api/landmarks${this.props.location.search}`).then(response =>{
             if(response.ok){
                 response.json().then(data => {
                 console.log("total count of recordsssss :",data._metadata.total_count);
@@ -126,25 +138,18 @@ dismissToast() {
         });
     }
 
+    setURL(query){
+        // console.log("query to set", query)
+        this.props.history.push( {pathname : this.props.location.pathname, search : qs.stringify(query)});
+    }
+
     render(){
-        // const query = parse(this.props.location.search);
-        // console.log("Landmark list state",this.state.landmarks_state)
+        const query = parse(this.props.location.search);
+        // console.log("In Landmark list", query)
 
         return(
             <div>
-                {/* <h1>Issue Tracker</h1> */}
-                {/* <Panel>
-                    <Panel.Heading>
-                        <Panel.Title toggle>
-							Filter
-						</Panel.Title>
-                    </Panel.Heading>
-                    <Panel.Collapse>
-                        <Panel.Body>
-                            <IssueFilter setFilter={this.setFilter} initFilter={query}/>
-                        </Panel.Body>
-                    </Panel.Collapse>
-                </Panel> */}
+                <LandmarkSearch setURL={this.setURL} initURL={query} />
                 <IssueTable issues_prop={this.state.landmarks_state} deleteLandmark={this.deleteLandmark}/>
                 {/* <IssueAdd createIssue={this.createIssue}/> */}
                 {/* <Toast
@@ -156,4 +161,10 @@ dismissToast() {
         );
     }
 }
+
+LandmarkList.propTypes = {
+    location : PropTypes.object.isRequired,
+    history: PropTypes.object,
+};
+
 

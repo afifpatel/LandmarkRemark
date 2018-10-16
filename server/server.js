@@ -30,6 +30,13 @@ MongoClient.connect('mongodb://localhost').then(client => {
 app.get('/api/landmarks', (req,res) => {
     const filter = {};
     
+    if (req.query.owner) filter.owner = req.query.owner
+
+    if (req.query.text) {
+        filter['$text'] = {  "$search" : req.query.text }
+        // console.log("Text filter", filter)
+    }
+    console.log("Text filter", filter)
     db.collection('lmr').find(filter).toArray().then( landmarks => {
         const metadata = { total_count: landmarks.length };
         res.json({ _metadata: metadata, records : landmarks})
@@ -64,20 +71,11 @@ app.get('/api/landmark/:id', (req,res) =>{
  
 app.post('/api/landmark', (req,res) => {
     const newLandmark = req.body;
-    // newIssue.id = issues.length + 1;
     newLandmark.date = new Date();
     newLandmark.location.lat= parseFloat(newLandmark.location.lat);
     newLandmark.location.lng= parseFloat(newLandmark.location.lng)
    console.log(JSON.stringify(newLandmark));
-    // const err = Issue.validateIssue(newLandmark)
-    // console.log(newLandmark);
-
-    // if(err){
-    //     res.status(422).json({ message: `Invalid request: ${err}` });
-    //     return;
-    // }
-
-   // issues.push(newIssue);
+    
     db.collection('lmr').insertOne(newLandmark).then( result => 
         db.collection('lmr').findOne({ _id: result.insertedId })).then( query_result => 
             db.collection('lmr').count().then( metadata => 
