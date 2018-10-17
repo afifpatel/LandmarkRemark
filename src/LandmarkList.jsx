@@ -114,7 +114,7 @@ dismissToast() {
     // }
 
     loadData(){
-        console.log("well in load Data")
+        // console.log("well in load Data")
         fetch(`/api/landmarks${this.props.location.search}`).then(response =>{
             if(response.ok){
                 response.json().then(data => {

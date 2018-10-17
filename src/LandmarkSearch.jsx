@@ -36,17 +36,20 @@ onClickUser(e){
     e.preventDefault();
     // console.log("Submit User", { owner : this.state.owner })
     this.props.setURL( { owner : this.state.owner })
+    this.setState({text : ''})
 }
 
 onClickText(e){
     e.preventDefault();
     // console.log("submit Text", this.state.text)
     this.props.setURL({ text : this.state.text})
+    this.setState({owner : ''})
 
 }
 
 clearFilter(){
     this.props.setURL({})
+    this.setState({owner : '', text : ''})
 }
 
 render(){
